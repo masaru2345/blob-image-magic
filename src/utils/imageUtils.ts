@@ -64,13 +64,11 @@ export const resizeImage = (
       URL.revokeObjectURL(img.src);
     };
     
-    // Set crossOrigin to anonymous to prevent CORS issues
-    img.crossOrigin = "anonymous";
     img.src = imgSrc;
   });
 };
 
-// Compress image - fixed to properly handle image loading
+// Compress image
 export const compressImage = (
   imgSrc: string,
   format: 'webp' | 'jpeg' | 'avif',
@@ -78,58 +76,45 @@ export const compressImage = (
 ): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    
-    // Set image loading handlers
     img.onload = () => {
-      try {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        
-        if (!ctx) {
-          reject(new Error('Canvas context not available'));
-          return;
-        }
-        
-        canvas.width = img.width;
-        canvas.height = img.height;
-        
-        // Draw the image at original size
-        ctx.drawImage(img, 0, 0);
-        
-        // Convert quality from 0-100 to 0-1
-        const normalizedQuality = quality / 100;
-        
-        // Generate compressed image with proper mime type
-        const mimeType = `image/${format}`;
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              resolve(blob);
-            } else {
-              reject(new Error('Failed to compress image'));
-            }
-          },
-          mimeType,
-          normalizedQuality
-        );
-      } catch (error) {
-        console.error("Canvas operation error:", error);
-        reject(new Error('Error during image processing'));
-      } finally {
-        URL.revokeObjectURL(img.src);
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        reject(new Error('Canvas context not available'));
+        return;
       }
+      
+      canvas.width = img.width;
+      canvas.height = img.height;
+      
+      // Draw the image at original size
+      ctx.drawImage(img, 0, 0);
+      
+      // Convert quality from 0-100 to 0-1
+      const normalizedQuality = quality / 100;
+      
+      // Generate compressed image
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error('Failed to compress image'));
+          }
+        },
+        `image/${format}`,
+        normalizedQuality
+      );
+      
+      URL.revokeObjectURL(img.src);
     };
     
     img.onerror = () => {
-      console.error("Image loading failed for:", imgSrc);
       reject(new Error('Failed to load image for compression'));
       URL.revokeObjectURL(img.src);
     };
     
-    // Set crossOrigin to anonymous to prevent CORS issues
-    img.crossOrigin = "anonymous";
-    
-    // Set image source last (after setting up all handlers)
     img.src = imgSrc;
   });
 };
@@ -155,9 +140,4 @@ export const downloadImage = (blob: Blob, fileName: string): void => {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-};
-
-// Add some animations to CSS classes
-export const addAnimationClass = (baseClass: string, animationClass: string): string => {
-  return `${baseClass} ${animationClass}`;
 };

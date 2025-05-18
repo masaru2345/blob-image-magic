@@ -138,18 +138,6 @@ export default {
 						transform: 'scale(0)'
 					}
 				},
-				'bob': {
-					'0%, 100%': { transform: 'translateY(0) scale(1)' },
-					'50%': { transform: 'translateY(-5px) scale(1.01)' }
-				},
-				'glow': {
-					'0%': {
-						boxShadow: '0 0 5px rgba(138, 75, 255, 0.2)'
-					},
-					'100%': {
-						boxShadow: '0 0 20px rgba(138, 75, 255, 0.6)'
-					}
-				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -160,11 +148,9 @@ export default {
 				'ripple': 'ripple 1s ease-out forwards',
 				'bounce': 'bounce 1s infinite',
 				'fade-in': 'fade-in 0.5s ease-out',
-				'scale-in': 'scale-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+				'scale-in': 'scale-in 0.3s ease-out',
 				'shimmer': 'shimmer 2s infinite linear',
 				'sparkle': 'sparkle 2s infinite ease-in-out',
-				'bob': 'bob 3s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite alternate',
 			},
 			backdropFilter: {
 				'none': 'none',
@@ -174,12 +160,6 @@ export default {
 				'blur-xl': 'blur(24px)',
 				'blur-2xl': 'blur(40px)',
 				'blur-3xl': 'blur(64px)',
-			},
-			blur: {
-				'xs': '2px',
-				'xxl': '40px',
-				'3xl': '64px',
-				'4xl': '96px',
 			},
 		}
 	},
