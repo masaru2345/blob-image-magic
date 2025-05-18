@@ -119,7 +119,25 @@ export default {
 						transform: 'scale(1)',
 						opacity: '1'
 					}
-				}
+				},
+				'shimmer': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100%)' }
+				},
+				'sparkle': {
+					'0%': {
+						opacity: '0',
+						transform: 'scale(0)'
+					},
+					'50%': {
+						opacity: '1',
+						transform: 'scale(1)'
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'scale(0)'
+					}
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -130,7 +148,9 @@ export default {
 				'ripple': 'ripple 1s ease-out forwards',
 				'bounce': 'bounce 1s infinite',
 				'fade-in': 'fade-in 0.5s ease-out',
-				'scale-in': 'scale-in 0.3s ease-out'
+				'scale-in': 'scale-in 0.3s ease-out',
+				'shimmer': 'shimmer 2s infinite linear',
+				'sparkle': 'sparkle 2s infinite ease-in-out',
 			},
 			backdropFilter: {
 				'none': 'none',
