@@ -178,7 +178,7 @@ const ResizePage = () => {
           variant="ghost" 
           size="icon" 
           onClick={handleBack}
-          className="mr-2"
+          className="mr-2 hover:bg-secondary/10 focus-visible:bg-secondary/10"
         >
           <ArrowLeft size={20} />
         </Button>
@@ -187,7 +187,7 @@ const ResizePage = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col">
-          <div className="bg-card rounded-lg shadow-md p-6 mb-6">
+          <div className="bg-card rounded-[1.5rem] shadow-md p-6 mb-6 hover:shadow-lg transition-all duration-300">
             <h2 className="text-xl font-semibold mb-4">Original Image</h2>
             
             {imageUrl ? (
@@ -210,7 +210,7 @@ const ResizePage = () => {
             )}
           </div>
 
-          <div className="bg-card rounded-lg shadow-md p-6">
+          <div className="bg-card rounded-[1.5rem] shadow-md p-6 hover:shadow-lg transition-all duration-300">
             <h2 className="text-xl font-semibold mb-4">Resize Settings</h2>
             
             <div className="space-y-4">
@@ -222,6 +222,7 @@ const ResizePage = () => {
                   id="lockAspect"
                   checked={lockAspectRatio}
                   onCheckedChange={handleLockAspectRatioChange}
+                  className="data-[state=checked]:bg-primary"
                 />
               </div>
 
@@ -231,10 +232,12 @@ const ResizePage = () => {
                   <Input
                     id="width"
                     type="number"
+                    inputMode="numeric"
                     min="1"
                     value={newDimensions.width}
                     onChange={handleWidthChange}
-                    className="text-base"
+                    className="text-base focus-visible:ring-primary"
+                    aria-label="Width in pixels"
                   />
                 </div>
                 
@@ -243,10 +246,12 @@ const ResizePage = () => {
                   <Input
                     id="height"
                     type="number"
+                    inputMode="numeric"
                     min="1"
                     value={newDimensions.height}
                     onChange={handleHeightChange}
-                    className="text-base"
+                    className="text-base focus-visible:ring-primary"
+                    aria-label="Height in pixels"
                   />
                 </div>
               </div>
@@ -254,7 +259,7 @@ const ResizePage = () => {
           </div>
         </div>
         
-        <div className="bg-card rounded-lg shadow-md p-6">
+        <div className="bg-card rounded-[1.5rem] shadow-md p-6 hover:shadow-lg transition-all duration-300">
           <h2 className="text-xl font-semibold mb-4">Resized Preview</h2>
           
           <div className="relative bg-muted rounded-lg overflow-hidden mb-6" style={{ minHeight: "300px" }}>
@@ -288,9 +293,10 @@ const ResizePage = () => {
               </p>
               <Button 
                 onClick={handleDownload} 
-                className="w-full"
+                className="w-full group relative overflow-hidden"
                 size="lg"
               >
+                <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-full bg-white/20 group-hover:translate-x-0 group-hover:opacity-0"></span>
                 <Download className="mr-2 h-5 w-5" />
                 Download Resized Image
               </Button>

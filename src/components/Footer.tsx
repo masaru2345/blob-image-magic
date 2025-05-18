@@ -6,8 +6,8 @@ const Footer = () => {
     <footer className="py-6 border-t border-muted">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-4 md:mb-0">
-          <Link to="/" className="font-heading text-xl font-bold gradient-text">
-            ImageWizard
+          <Link to="/" className="font-heading text-xl font-bold gradient-text hover:opacity-90 transition-opacity">
+            InstantImg
           </Link>
         </div>
         <div className="text-sm text-muted-foreground">
@@ -16,7 +16,7 @@ const Footer = () => {
             href="https://flux8labs.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary hover:underline"
+            className="text-primary hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-75 focus-visible:rounded"
           >
             flux8labs.com
           </a>
