@@ -41,8 +41,8 @@ const ResizePage = () => {
     setImageUrl(storedImageUrl);
     setFileName(storedFileName);
     
-    // Load image to get dimensions
-    const img = new Image();
+    // Load image to get dimensions - FIX: Properly initialize the Image object
+    const img = new window.Image();
     img.onload = () => {
       const originalWidth = img.width;
       const originalHeight = img.height;

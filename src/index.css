@@ -74,6 +74,7 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -125,6 +126,14 @@
   .animate-ripple {
     animation: ripple 1s ease-out forwards;
   }
+  
+  .animate-float-up {
+    animation: float-up 15s ease-in-out infinite;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
 }
 
 @keyframes float {
@@ -138,10 +147,10 @@
 }
 
 @keyframes blob-move {
-  0%, 100% { border-radius: '60% 40% 30% 70%/60% 30% 70% 40%'; }
-  25% { border-radius: '30% 60% 70% 40%/50% 60% 30% 60%'; }
-  50% { border-radius: '50% 60% 30% 60%/40% 50% 60% 50%'; }
-  75% { border-radius: '60% 40% 50% 40%/70% 30% 50% 60%'; }
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 40% 50% 60% 50%; }
+  75% { border-radius: 60% 40% 50% 40% / 70% 30% 50% 60%; }
 }
 
 @keyframes blob-morph {
@@ -160,5 +169,33 @@
   100% {
     transform: scale(4);
     opacity: 0;
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: var(--opacity, 0.3);
+  }
+  80% {
+    opacity: var(--opacity, 0.3);
+  }
+  100% {
+    transform: translateY(-20vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

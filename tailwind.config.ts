@@ -89,6 +89,36 @@ export default {
 				'ripple': {
 					'0%': { transform: 'scale(0)', opacity: '1' },
 					'100%': { transform: 'scale(4)', opacity: '0' }
+				},
+				'bounce': {
+					'0%, 100%': { 
+						transform: 'translateY(-25%)',
+						animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)'
+					},
+					'50%': { 
+						transform: 'translateY(0)',
+						animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)'
+					}
+				},
+				'fade-in': {
+					'0%': { 
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': { 
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						transform: 'scale(0.95)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'scale(1)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
@@ -97,8 +127,20 @@ export default {
 				'blob': 'blob-move 15s infinite ease-in-out alternate',
 				'pulse-slow': 'pulse-slow 4s infinite ease-in-out',
 				'float': 'float 6s infinite ease-in-out',
-				'ripple': 'ripple 1s ease-out forwards'
-			}
+				'ripple': 'ripple 1s ease-out forwards',
+				'bounce': 'bounce 1s infinite',
+				'fade-in': 'fade-in 0.5s ease-out',
+				'scale-in': 'scale-in 0.3s ease-out'
+			},
+			backdropFilter: {
+				'none': 'none',
+				'blur': 'blur(8px)',
+				'blur-md': 'blur(12px)',
+				'blur-lg': 'blur(16px)',
+				'blur-xl': 'blur(24px)',
+				'blur-2xl': 'blur(40px)',
+				'blur-3xl': 'blur(64px)',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
